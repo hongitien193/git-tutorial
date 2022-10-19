@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo</title>
+    <style>
+        *, ::before, ::after{
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        }
+        .container {
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto
+        }
+
+        @media (min-width:768px) {
+            .container {
+                width: 750px
+            }
+        }
+
+        @media (min-width:992px) {
+            .container {
+                width: 970px
+            }
+        }
+
+        @media (min-width:1200px) {
+            .container {
+                width: 1170px
+            }
+        }
+
+        .slide-animation{
+            position: relative;
+            margin: 0;
+            padding: 0;
+            flex-basis: 40vw;
+        }
+
+        .inter01 ul.imageviewer{
+            position: relative;
+            width: 40vw;
+            height: -webkit-calc(40vw / 1000 * 1500);
+            height: calc(40vw / 1000 * 1500);
+            text-align: left;
+            margin: 0;
+            padding: 0;
+            z-index: 11;
+            overflow: hidden;
+        }
+
+        .inter01 ul.imageviewer li{
+            position: absolute;
+            z-index: 1;
+            width: 40vw;
+            height: -webkit-calc(40vw / 1000 * 1500);
+            height: calc(40vw / 1000 * 1500);
+            margin: 0;
+            padding: 0;
+            top: 0;
+            left: 0;
+            opacity: 1;
+            overflow: hidden;
+        }
+
+        .inter01 ul.imageviewer li .photo_zone{
+            transform-origin: top left;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 40vw;
+            height: -webkit-calc(40vw / 1000 * 1500);
+            height: calc(40vw / 1000 * 1500);
+            background-size: cover;
+        }
+
+        .inter01 ul.imageviewer li.aaaa .photo_zone{
+            background: url(images/p01_02.jpg) no-repeat center center; 
+        }
+
+        .inter01 ul.imageviewer li.bbb .photo_zone{
+            background: url(images/p01_03.jpg) no-repeat center center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="slide-animation">
+            <div class="inter01">
+                <a href="javascript:void(0)">
+                    <ul class="imageviewer fadein_fix">
+                        <li class="aaaa"><div class="photo_zone"><!--img src="common/img/p01_02.jpg"--></div></li>
+                        <li class="bbb"><div class="photo_zone"><!--img src="common/img/p01_03.jpg"--></div></li>
+                    </ul>
+                </a>
+            </div>
+        </div>
+    </div>
+    <p>this is App</p>
+    <button>Đây là button</button>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<script src="https://kose_kidzania.cetusvn.net/company/ja/kidzania/js/lib/jquery.waypoints.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        slideAnimation();
+        function accessPoint(){
+            var animFadeInEl = $(".fadein_fix");
+            0 < animFadeInEl.length &&
+                animFadeInEl.each(function () {
+                var e = $(this);
+                e.waypoint(
+                    slideAnimation(),{ offset: "95%" }
+                );
+            });
+        }
+
+        function slideAnimation(){
+            var index = 1;
+            var listImg = $(".imageviewer li");
+            var firstSlide = $(".imageviewer li").first();
+           
+            const item1 = $('<li class="aaaa" style="opacity: 1; width: 0; z-index: 1;"><div class="photo_zone"><!--img src="common/img/p01_02.jpg"--></div></li>')
+            const item2 = $('<li class="bbbb" style="opacity: 1; width: 0; z-index: 1;"><div class="photo_zone"><!--img src="common/img/p01_02.jpg"--></div></li>')
+            var maxindex = listImg.length;
+
+            listImg.css({"opacity":"1", "width":"0","z-index":"1"});
+
+            // const listSelected = [];
+
+            // $('.imageviewer').each(function(idx, target){
+            //     listSelected.push($(target).html());
+                
+            // });
+
+            // $('.imageviewer').each(function(idx, target){
+            //     $(target).find('li').show()
+            //     const currentValue = $(target).html();
+            //     listSelected.forEach(function(v) {
+                   
+            //         setInterval(function(){
+            //             var firstSlide = $(".imageviewer li").first();
+            //             i = 2e3
+
+            //             firstSlide.css({"opacity":"1" , "z-index":"2"}).animate({width:"100%"}, i) 
+            //             console.log(1, i)
+            //             setInterval(function(){
+            //                 idx ++;
+            //             },2500)
+
+                        // if(!idx == 0){
+                        //     setInterval(function(){
+                        //         $('.aaaa').remove()
+                        //         item1.appendTo('.imageviewer').css({"opacity":"1" , "z-index":"2"}).animate({width:"100%"}, i)
+                        //     },4000)
+                           
+                        // }                       
+
+
+                        // setInterval(function(){
+                        //     item1.css({"opacity":"1" , "z-index":"2"}).animate({width:"100%"}, i).appendTo('.imageviewer')
+                        // },500)
+                        
+                        // if(idx == 0){
+                            
+
+                        //     setInterval(function(){
+                        //         item1.css({"opacity":"1" , "z-index":"2"}).animate({width:"100%"}, i).appendTo('.imageviewer')
+                        //     },i)
+                        // }
+                        // }else if(!idx == 0){
+                        //     listImg.css({"opacity":"1" , "z-index":"2"}).animate({width:"100%"}, 2000);
+                        //     idx=0;
+                        //     setInterval(function(){
+                        //         $(firstSlide).remove();
+                        //         item2.css({"opacity":"1" , "z-index":"2"}).animate({width:"100%"}, 2000).appendTo('.imageviewer')
+                        //     },6500)
+                        // }
+                        // setInterval(function(){
+                        //     idx ++;
+                        // },2500)
+            //         },500)
+                    
+            //     });
+            // });
+
+           
+            var imgLoop = setInterval(function () {
+               
+                if(index % 2 !== 0){
+                    listImg.css({"opacity":"1" , "width":"0", "z-index":"2"}).animate({width:"100%"}, 2000);
+                    listImg.find('.photo_zone').css({"transform-origin":"50% 50% 0px", "transform":"translate(0px)"}).animate({ 'transform':'scale(0.5)'},2000);
+                    firstSlide.css({"opacity":"1" , "z-index":"1"});
+                   
+                }else{
+                    firstSlide.css({"opacity":"1", "width":"0" , "z-index":"2"}).animate({width:"100%"}, 2000); 
+                    firstSlide.find('.photo_zone').css({"transform-origin":"50% 50% 0px", "transform":"translate(0px)"}).animate({"transform":"translate3d(0 , 0, 0) scale(1.1)"},4000);
+                    listImg.css({"opacity":"1" , "z-index":"1"});
+                }
+                index++;
+                
+                console.log(index)
+                // listImg.css({"opacity":"1" , "z-index":"2"}).animate({width:"100%"}, 2000).appendTo('.imageviewer');
+            }, 2000);
+        }
+    });
+</script>
+
+</html>
